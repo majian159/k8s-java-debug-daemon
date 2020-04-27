@@ -7,8 +7,8 @@
 4. 程序将 stdout 保存到本地文件。
 
 ## 效果预览
-![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_36_lNocqD%20.png)
-![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_38_ryjTbU%20.png)
+![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_53_bH3y0o%20.png)
+![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_54_XrXVpk%20.png)
 
 ## 默认行为
 - 每 node 同时运行执行数为10
@@ -196,6 +196,7 @@ Legend 中填写
 ![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_23_l95PjW%20.jpg)
 
 配置Alert  
+IS ABOVE: CPU使用值，这边配置的是超过1核CPU就报警, 可以根据需要自己调节
 Evaluate every: 每多久计算一次  
 For: Pedding时间
 

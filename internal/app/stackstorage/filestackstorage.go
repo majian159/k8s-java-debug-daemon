@@ -17,7 +17,7 @@ func NewFileStackStorage() FileStackStorage {
 
 func (s FileStackStorage) Store(model ContainerStackModel) error {
 	now := time.Now()
-	dirName := filepath.Join("stacks", model.Namespace, now.Format("2006-01-02-15"))
+	dirName := filepath.Join("stacks", now.Format("2006-01-02"), model.Namespace)
 
 	err := os.MkdirAll(dirName, os.ModePerm)
 
