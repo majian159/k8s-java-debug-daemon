@@ -34,7 +34,7 @@
 - 默认取最繁忙的前50个线程的堆栈信息 (可在 `craw.sh` 中修改)
 - 采集样本时间为2秒 (可在 `craw.sh` 中修改)
 
-## 使用
+## 如何使用
 ### 为 Grafana 新建一个通知频道
 ![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_08_ID8XfL%20.png)
 #### 注意点
@@ -182,7 +182,7 @@
 }
 ```
 
-#### 注意点
+#### Queries配置
 Metrics 中填写
 ```text
 container_memory_working_set_bytes{job="kubelet", metrics_path="/metrics/cadvisor", image!="", container!="POD"} * on (namespace, pod) group_left(node) max by(namespace, pod, node, container) (kube_pod_info)
@@ -195,10 +195,13 @@ Legend 中填写
 配置完如下：
 ![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_23_l95PjW%20.jpg)
 
-配置Alert  
-IS ABOVE: CPU使用值，这边配置的是超过1核CPU就报警, 可以根据需要自己调节
-Evaluate every: 每多久计算一次  
-For: Pedding时间
+#### Alert配置
+**IS ABOVE**  
+CPU使用值，这边配置的是超过1核CPU就报警, 可以根据需要自己调节  
+**Evaluate every**  
+每多久计算一次  
+**For**  
+Pedding时间  
 
 配置完应该如下:  
 ![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_26_xOjjLk%20.jpg)
