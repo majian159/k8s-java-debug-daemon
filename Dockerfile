@@ -1,5 +1,5 @@
 FROM ubuntu:xenial
 WORKDIR /app
-COPY jdd ./
+COPY jdd-linux ./jdd
 RUN chmod +x jdd
 CMD ./jdd
