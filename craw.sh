@@ -20,7 +20,7 @@ fi
 
 unset JAVA_TOOL_OPTIONS
 # 处理pid 1非java应用的情况
-pid=$(jps | grep -v "Jps" | awk '{print $1}')
+pid=$(jps -l | grep -v "Jps" | grep -v "arthas-boot.jar" | grep -v "process information unavailable" | awk '{print $1}')
 
 # 获取繁忙的前20个线程
 java -jar arthas-boot.jar "${pid}" -c "thread -n ${max_thread_count} -i ${interval}"

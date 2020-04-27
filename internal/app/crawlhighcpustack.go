@@ -56,7 +56,6 @@ func crawl(client util.KubernetesClient, context CrawlContext) (stdoutBytes []by
 	var stdout bytes.Buffer
 	stderr, err := client.Exec(namespace, podName, containerName, commands, stdin, &stdout)
 
-	fmt.Println(podName)
 	if len(stderr) != 0 {
 		return nil, fmt.Errorf("STDERR: " + (string)(stderr))
 	}

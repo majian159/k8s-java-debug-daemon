@@ -53,8 +53,6 @@ func HookHandler(c *gin.Context) {
 		return
 	}
 
-	fmt.Println(string(data))
-
 	var model AlertModel
 	err = json.Unmarshal(data, &model)
 
@@ -100,14 +98,14 @@ func doHandleEvalMatch(model EvalMatchModel) {
 	})
 
 	if err != nil {
-		log.Printf("crawString error: %v\n", err)
+		log.Printf("crawString tag: %v, error: %v\n", tag, err)
 		return
 	}
 
 	err = storeStack(stack, model)
 
 	if err != nil {
-		log.Printf("store stack error: stack:%s, %v\n", stack, err)
+		log.Printf("store stack error: tag:%v, stack:%s, %v\n", tag, stack, err)
 	}
 
 }
