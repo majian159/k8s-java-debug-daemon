@@ -70,6 +70,11 @@ func HookHandler(c *gin.Context) {
 }
 
 func doHandle(model AlertModel) {
+	// 忽略正常告警
+	if model.IsOk() {
+		return
+	}
+
 	matches := model.EvalMatches
 	for _, e := range matches {
 		go doHandleEvalMatch(e)
