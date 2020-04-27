@@ -35,6 +35,9 @@
 - 采集样本时间为2秒 (可在 `craw.sh` 中修改)
 
 ## 如何使用
+### Docker Image
+[majian159/java-debug-daemon](https://hub.docker.com/r/majian159/java-debug-daemon)
+
 ### 为 Grafana 新建一个通知频道
 ![](https://cdn.jsdelivr.net/gh/majian159/blogs@master/images/2020_04_27_15_08_ID8XfL%20.png)
 #### 注意点
