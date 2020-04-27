@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"javaDebugDaemon/internal"
 	"javaDebugDaemon/internal/app"
-	"javaDebugDaemon/internal/app/nodelock"
 	"javaDebugDaemon/internal/app/stackstorage"
 	"javaDebugDaemon/internal/util"
 	"log"
@@ -18,7 +18,7 @@ var kubernetesClient *util.KubernetesClient
 var stackStorage stackstorage.StackStorage = stackstorage.NewFileStackStorage()
 
 func NewAlertHookHandler() (func(ctx *gin.Context), error) {
-	client, err := util.DefaultKubernetesClient()
+	client, err := internal.DefaultKubernetesClient()
 	if err != nil {
 		return nil, fmt.Errorf("create k8s client error: %v", err)
 	}
@@ -80,7 +80,7 @@ func doHandleEvalMatch(model EvalMatchModel) {
 	tag := model.Tags
 	node := tag.Node
 
-	nodeLockManager := *nodelock.GetDefaultNodeLockManager()
+	nodeLockManager := *internal.GetDefaultNodeLockManager()
 	locker := nodeLockManager.GetLock(node)
 
 	locker.Lock()

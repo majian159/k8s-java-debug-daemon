@@ -6,19 +6,13 @@ type LockManager interface {
 	GetLock(node string) sync.Locker
 }
 
-func NewLockManager(permits uint) LockManager {
-	return DefaultLockManager{permits: permits, maps: sync.Map{}}
-}
-
-var defaultNodeLockManager = NewLockManager(10)
-
-func GetDefaultNodeLockManager() *LockManager {
-	return &defaultNodeLockManager
-}
-
 type DefaultLockManager struct {
 	permits uint
 	maps    sync.Map
+}
+
+func NewLockManager(permits uint) LockManager {
+	return DefaultLockManager{permits: permits, maps: sync.Map{}}
 }
 
 func (m DefaultLockManager) GetLock(node string) sync.Locker {
