@@ -1,12 +1,12 @@
 # pkg cache
-FROM golang:1.14 as go_dep
+FROM golang:1.17-alpine as go_dep
 WORKDIR /source
 COPY go.* ./
 ENV GOPROXY=https://goproxy.cn
 RUN go mod download
 
 # build
-FROM golang:1.14 as builder
+FROM golang:1.17-alpine as builder
 WORKDIR /source
 COPY --from=go_dep /go /go
 COPY . .
