@@ -27,7 +27,7 @@ jobs:
         echo 'FROM ubuntu:focal' >> Dockerfile
         echo 'WORKDIR /app' >> Dockerfile
         echo 'COPY ./craw.sh .' >> Dockerfile
-        echo 'RUN chmod +x ./craw.sh' >> Dockerfile
+        echo 'RUN apt update && apt install -y tzdata --no-install-recommends && rm -rf /var/lib/apt/lists/*' >> Dockerfile
         echo 'COPY ./jdd .' >> Dockerfile
         echo 'CMD ["./jdd"]' >> Dockerfile
 

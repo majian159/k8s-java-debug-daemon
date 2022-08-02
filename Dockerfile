@@ -18,5 +18,6 @@ RUN cp craw.sh target/ \
 # main
 FROM ubuntu:xenial
 WORKDIR /app
+RUN apt update && apt install -y tzdata --no-install-recommends && rm -rf /var/lib/apt/lists/*
 COPY --from=builder /source/target .
 CMD [ "./jdd" ]

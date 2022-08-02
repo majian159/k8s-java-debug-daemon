@@ -16,7 +16,7 @@ type CrawlContext struct {
 }
 
 const shellFile = "craw.sh"
-const targetFile = "/root/craw.sh"
+const targetFile = "/tmp/craw.sh"
 
 func CrawlString(client util.KubernetesClient, context CrawlContext) (string, error) {
 	data, err := crawl(client, context)
