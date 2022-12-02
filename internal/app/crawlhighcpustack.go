@@ -3,8 +3,8 @@ package app
 import (
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"javaDebugDaemon/internal/util"
+	"os"
 	"strings"
 )
 
@@ -16,7 +16,7 @@ type CrawlContext struct {
 }
 
 const shellFile = "craw.sh"
-const targetFile = "/tmp/craw.sh"
+const targetFile = "/root/craw.sh"
 
 func CrawlString(client util.KubernetesClient, context CrawlContext) (string, error) {
 	data, err := crawl(client, context)
@@ -47,7 +47,7 @@ func crawl(client util.KubernetesClient, context CrawlContext) (stdoutBytes []by
 
 	commands = append(commands, fmt.Sprintf("cp -f /dev/stdin %[1]s;chmod +x %[1]s;%[1]s", targetFile))
 
-	scriptData, err := ioutil.ReadFile(shellFile)
+	scriptData, err := os.ReadFile(shellFile)
 	if err != nil {
 		return nil, fmt.Errorf("read file error: %v", err)
 	}
@@ -56,8 +56,8 @@ func crawl(client util.KubernetesClient, context CrawlContext) (stdoutBytes []by
 	var stdout bytes.Buffer
 	stderr, err := client.Exec(namespace, podName, containerName, commands, stdin, &stdout)
 
-	if len(stderr) != 0 {
-		return nil, fmt.Errorf("STDERR: " + (string)(stderr))
+	if len(stderr) != 0 && !strings.HasPrefix(string(stderr), "Picked up JAVA_TOOL_OPTIONS:") {
+		return nil, fmt.Errorf("STDERR: " + string(stderr))
 	}
 
 	if err != nil {

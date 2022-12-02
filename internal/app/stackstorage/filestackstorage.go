@@ -2,7 +2,6 @@ package stackstorage
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"time"
@@ -29,7 +28,7 @@ func (s FileStackStorage) Store(model ContainerStackModel) error {
 
 	filePath := filepath.Join(dirName, fileName)
 
-	err = ioutil.WriteFile(filePath, []byte(model.Stack), 0644)
+	err = os.WriteFile(filePath, []byte(model.Stack), 0644)
 
 	if err != nil {
 		return fmt.Errorf("write file '%s', error:%v", filePath, err)

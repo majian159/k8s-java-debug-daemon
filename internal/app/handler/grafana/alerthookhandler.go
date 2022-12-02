@@ -3,7 +3,7 @@ package grafana
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"javaDebugDaemon/internal"
 	"javaDebugDaemon/internal/app"
 	"javaDebugDaemon/internal/app/stackstorage"
@@ -40,7 +40,7 @@ func HookHandler(c *gin.Context) {
 	}
 	defer body.Close()
 
-	data, err := ioutil.ReadAll(body)
+	data, err := io.ReadAll(body)
 
 	if err != nil {
 		log.Printf("read all error: %v\n", err)
